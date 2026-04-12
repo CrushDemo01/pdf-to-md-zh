@@ -1,0 +1,14 @@
+{
+  "Table 1.": [
+    {
+      "page": 6,
+      "markdown": "| Method | Real(20) PSNR | Real(20) SSIM | Average PSNR | Average SSIM |\n| --- | --- | --- | --- | --- |\n| Ours | [待填] | [待填] | [待填] | [待填] |"
+    }
+  ],
+  "Table 2.": [
+    {
+      "page": 7,
+      "markdown": "| Method | Params (M) | GFLOPs | Pre-trained Backbone |\n| --- | --- | --- | --- |\n| Ours | [待填] | [待填] | - |"
+    }
+  ]
+}

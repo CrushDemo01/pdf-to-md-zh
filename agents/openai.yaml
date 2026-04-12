@@ -1,0 +1,3 @@
+display_name: PDF To MD ZH
+short_description: Convert a PDF paper into a source markdown package, then translate it into final Chinese Markdown.
+default_prompt: Convert the provided PDF paper into a rich source markdown package with Mistral OCR first, then translate it chunk by chunk into final Chinese Markdown in target.md. You must check image placement against the rendered PDF pages, and if an OCR image is inserted in the wrong place, move it so it appears near the paragraph or subsection that actually discusses it. Keep images and markdown tables instead of screenshots where possible, correct OCR mistakes against rendered PDF pages, and do not stop at draft placeholders such as [待翻译] unless the user explicitly asks for a draft.
