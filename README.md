@@ -3,6 +3,8 @@
 
 `pdf-to-md-zh` is a Codex skill for turning a research PDF into a source Markdown package with Mistral OCR, then translating and correcting it into final Chinese Markdown.
 
+[中文说明](README.zh-CN.md) | [Chinese Skill](SKILL.zh-CN.md)
+
 ## What it does
 
 - Runs Mistral OCR first and saves a source package with `mistral.md`, `ocr.json`, `images/`, and `pages/`.
