@@ -10,6 +10,7 @@
 - Runs Mistral OCR first and saves a source package with `mistral.md`, `ocr.json`, `images/`, and `pages/`.
 - Translates the source Markdown into `target.md`.
 - Checks rendered PDF pages during translation so image placement, captions, and tables stay aligned with the paper.
+- Reads `MISTRAL_API_KEY` from the environment; it does not prompt for the token interactively.
 
 ## Files
 
@@ -21,8 +22,14 @@
 ## Requirements
 
 - Python 3
-- `MISTRAL_API_KEY` for OCR
+- `MISTRAL_API_KEY` for Mistral OCR
 - `OPENAI_API_KEY` for scripted translation helpers that call the OpenAI Responses API
+
+Before running OCR, export the token:
+
+```bash
+export MISTRAL_API_KEY=<your-mistral-token>
+```
 
 ## Usage
 

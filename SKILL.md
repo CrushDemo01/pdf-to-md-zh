@@ -20,6 +20,9 @@ The default final deliverable is `target.md`. The first-stage OCR output is a
 source package, not the final translated result. The default workflow should
 not create a separate translation draft file.
 
+This skill expects `MISTRAL_API_KEY` to be present in the environment before
+OCR starts. It does not prompt for the token interactively.
+
 ## Stage 1: Rich OCR Package
 
 The OCR stage should preserve as much Mistral-returned structure as possible.

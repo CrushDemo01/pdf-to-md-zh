@@ -7,6 +7,7 @@
 - 先运行 Mistral OCR，生成 `mistral.md`、`ocr.json`、`images/`、`pages/` 等源文件。
 - 将源 Markdown 翻译为 `target.md`。
 - 翻译时结合 PDF 页面图校对图片位置、图注和表格，尽量保持与原论文一致。
+- 从环境变量读取 `MISTRAL_API_KEY`，不会在运行时交互式询问 token。
 
 ## 文件结构
 
@@ -19,8 +20,14 @@
 ## 依赖
 
 - Python 3
-- `MISTRAL_API_KEY`：用于 OCR
+- `MISTRAL_API_KEY`：用于 Mistral OCR
 - `OPENAI_API_KEY`：用于脚本化翻译辅助流程
+
+在运行 OCR 前先设置 token：
+
+```bash
+export MISTRAL_API_KEY=<your-mistral-token>
+```
 
 ## 使用
 

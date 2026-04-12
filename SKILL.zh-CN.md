@@ -17,6 +17,8 @@ description: 先用 Mistral OCR 将研究论文 PDF 转成完整的源 Markdown 
 
 最终交付物默认是 `target.md`。第一阶段产物是源包，不是最终译文。默认流程不应额外生成单独的翻译草稿文件。
 
+这个 skill 期望在 OCR 开始前，环境中已经设置好 `MISTRAL_API_KEY`。它不会在运行时交互式询问 token。
+
 ## 第一阶段：富 OCR 源包
 
 OCR 阶段应尽可能保留 Mistral 返回的结构。推荐输出包括：
