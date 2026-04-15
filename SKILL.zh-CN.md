@@ -17,6 +17,8 @@ description: 先用 Mistral OCR 将研究论文 PDF 转成完整的源 Markdown 
 
 最终交付物默认是 `target.md`。第一阶段产物是源包，不是最终译文。默认流程不应额外生成单独的翻译草稿文件。
 
+中间的 `chunk_XX.md` 翻译文件是可选的，不应作为默认输出。优先按章节直接增量写入 `target.md`。
+
 这个 skill 期望在 OCR 开始前，环境中已经设置好 `MISTRAL_API_KEY`。它不会在运行时交互式询问 token。
 
 ## 第一阶段：富 OCR 源包
@@ -81,6 +83,8 @@ OCR 阶段应尽可能保留 Mistral 返回的结构。推荐输出包括：
 
 不要停留在含有 `[待翻译]` 的草稿，也不要创建额外的 `*_draft.md` 文件，除非用户明确要求。
 
+如果为了方便临时生成了 chunk 文件，完成后应删除，除非用户明确要求保留。
+
 ## 推荐工具
 
 1. 准备工具
@@ -89,6 +93,8 @@ OCR 阶段应尽可能保留 Mistral 返回的结构。推荐输出包括：
    - `extract_pdf_assets.py`
 2. 写入工具
    - `write_md_chunk.py`
+   - 优先直接增量编辑 `target.md`
+   - 临时 chunk 文件是可选的，不是必须的
 3. 可选兼容工具
    - `translate_markdown_chunks.py`
    - `build_translation_draft.py`（仅调试）
@@ -147,6 +153,7 @@ python3 skills/pdf-to-md-zh/scripts/extract_pdf_assets.py \
 - 只有在确实无法辨认时才使用 `[待人工校对]`。
 - 最终交付的 `target.md` 中不要保留 `[待翻译]`。
 - 除非用户明确要求，否则不要创建中间草稿文件。
+- 不要保留 `chunk_XX.md` 文件，除非它们当前确实有用或用户明确要求保留。
 
 ## 质量检查
 
@@ -157,3 +164,4 @@ python3 skills/pdf-to-md-zh/scripts/extract_pdf_assets.py \
 - 图片是否放在真正讨论它的地方，而不是机械跟随 OCR 插入点？
 - 表格是否优先使用 OCR 返回表格文件？
 - 生成的 `target.md` 是否像一篇可发布的中文论文译稿？
+- 如果使用了分块，是否是增量写入 `target.md`，而不是把 chunk 文件当作主要交付物？

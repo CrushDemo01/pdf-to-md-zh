@@ -20,6 +20,9 @@ The default final deliverable is `target.md`. The first-stage OCR output is a
 source package, not the final translated result. The default workflow should
 not create a separate translation draft file.
 
+Intermediate `chunk_XX.md` translation files are optional and should not be the
+default output. Prefer writing directly into `target.md` section by section.
+
 This skill expects `MISTRAL_API_KEY` to be present in the environment before
 OCR starts. It does not prompt for the token interactively.
 
@@ -89,6 +92,9 @@ The translation stage should use:
 Do **not** stop at a scaffold containing `[待翻译]`, and do **not** create an
 extra `*_draft.md` file unless the user explicitly asks for one.
 
+If temporary chunk files are used for convenience, remove them afterwards
+unless the user explicitly wants them preserved.
+
 ## Preferred Tools
 
 1. Preparation tools
@@ -97,6 +103,8 @@ extra `*_draft.md` file unless the user explicitly asks for one.
    - `extract_pdf_assets.py`
 2. Mechanical writer
    - `write_md_chunk.py`
+   - direct incremental edits to `target.md` are preferred
+   - temporary chunk files are optional, not required
 3. Optional compatibility helpers
    - `translate_markdown_chunks.py`
    - `build_translation_draft.py` for debugging only
@@ -158,6 +166,7 @@ python3 skills/pdf-to-md-zh/scripts/extract_pdf_assets.py \
 - Use `[待人工校对]` only when content remains unreadable after checking page images.
 - Do not leave `[待翻译]` in the final delivered `target.md`.
 - Do not create an intermediate draft markdown file unless the user explicitly asks for one.
+- Do not keep `chunk_XX.md` files unless they are actively useful or the user asked to keep them.
 
 ## Quality Checklist
 
@@ -169,3 +178,4 @@ python3 skills/pdf-to-md-zh/scripts/extract_pdf_assets.py \
 - Are tables taken from OCR-returned table files where possible?
 - Are figures and tables placed near the relevant discussion?
 - Does the final `target.md` read like a publishable translated article?
+- Were chunks, if any, written incrementally into `target.md` rather than being left as the main artifact?
